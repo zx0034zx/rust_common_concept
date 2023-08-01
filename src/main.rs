@@ -4,7 +4,8 @@ fn main() {
     println!("Hello, world!");
     // variable();
     // data_type();
-    // function();
+    function();
+    loop_label();
 }
 
 fn variable() {
@@ -102,5 +103,61 @@ fn data_type() {
 }
 
 fn function(){
+    another_function(5);
+    print_labeled_measurement(5,'h');
+    let ans = expression();
+    println!("The value of ans is: {ans}");
+}
 
+fn another_function(x: i32) {
+    println!("The value of x is: {x}");
+}
+
+fn print_labeled_measurement(value: i32, unit_label: char) {
+    println!("The measurement is: {value}{unit_label}");
+}
+
+fn expression()->i32{
+    let x = 5;
+    let y = {
+        let x = 3;
+        x + 1
+    };
+    println!("The value of y is: {y}");
+    return y;
+}
+
+fn control_flow(){
+    let mut counter = 0;
+
+    let result = loop {
+        counter += 1;
+
+        if counter == 10 {
+            break counter * 2;
+        }
+    };
+
+    println!("The result is {result}");
+}
+fn loop_label(){
+    let mut count = 0;
+    'counting_up: loop {
+        println!("count = {count}");
+        let mut remaining = 10;
+
+        loop {
+            println!("remaining = {remaining}");
+            if remaining == 9 {
+                break;
+            }
+            if count == 2 {
+                break 'counting_up;
+            }
+            remaining -= 1;
+        }
+
+        count += 1;
+    }
+    println!("End count = {count}");
 }
